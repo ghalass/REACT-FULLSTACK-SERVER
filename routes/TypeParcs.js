@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { TypeParcs } = require("../models");
 const { validateToken } = require("../middlewares/AuthMiddleware");
-// const { Op } = require("sequelize");
+const { Op } = require("sequelize");
 
 // GET ALL POSTS
 router.get("/", async (req, res) => {
@@ -46,24 +46,24 @@ router.post("/", async (req, res) => {
 
 // UPDATE POST
 router.put("/", async (req, res) => {
-  const site = req.body;
+  const typeparc = req.body;
 
   try {
     const siteFounded = await TypeParcs.findOne({
       where: {
         [Op.and]: [
-          { id: { [Op.ne]: site.id } },
-          { title: { [Op.eq]: site.title } },
+          { id: { [Op.ne]: typeparc.id } },
+          { title: { [Op.eq]: typeparc.title } },
         ],
       },
     });
     if (siteFounded) {
-      res.json({ error: "Site Is already exist" });
+      res.json({ error: "typeparc Is already exist" });
     } else {
-      const updatedSite = await TypeParcs.update(site, {
-        where: { id: site.id },
+      const updatedTypeParc = await TypeParcs.update(typeparc, {
+        where: { id: typeparc.id },
       });
-      res.json(updatedSite);
+      res.json(updatedTypeParc);
     }
   } catch (error) {
     res.json({ error: error });
@@ -71,18 +71,17 @@ router.put("/", async (req, res) => {
 });
 
 // DELETE A POST
-router.delete("/:siteId", async (req, res) => {
+router.delete("/:id", async (req, res) => {
   try {
-    const siteId = req.params.siteId;
+    const id = req.params.id;
     await TypeParcs.destroy({
       where: {
-        id: siteId,
+        id: id,
       },
     });
     res.json("DELETED SUCCESSFULLY");
   } catch (error) {
-    console.log(`${error}`.red);
-    res.json({ error: "Site Doesn't Exist" });
+    res.json({ error: "TypeParc Doesn't Exist" });
   }
 });
 
