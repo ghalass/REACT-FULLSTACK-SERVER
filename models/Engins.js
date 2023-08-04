@@ -9,6 +9,14 @@ module.exports = (sequelize, DataType) => {
       allowNull: false,
     },
   });
+  Engins.associate = (models) => {
+    Engins.belongsTo(models.Parcs, {
+      onDelete: "cascade",
+    });
+    Engins.belongsTo(models.Sites, {
+      onDelete: "cascade",
+    });
+  };
 
   return Engins;
 };

@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { Parcs } = require("../models");
+const { Parcs, TypeParcs } = require("../models");
 const { validateToken } = require("../middlewares/AuthMiddleware");
 const { Op } = require("sequelize");
 
@@ -9,6 +9,7 @@ router.get("/", async (req, res) => {
   try {
     const listOfObjects = await Parcs.findAll({
       order: [["createdAt", "DESC"]],
+      include: [TypeParcs],
     });
     res.json(listOfObjects);
   } catch (error) {

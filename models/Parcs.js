@@ -13,6 +13,9 @@ module.exports = (sequelize, DataType) => {
     Parcs.hasMany(models.Engins, {
       onDelete: "cascade",
     });
+    Parcs.belongsTo(models.TypeParcs, {
+      onDelete: "cascade",
+    });
   };
 
   return Parcs;
