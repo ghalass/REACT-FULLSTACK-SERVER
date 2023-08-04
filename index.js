@@ -49,6 +49,9 @@ app.use("/parcs", parcsRouter);
 // ENGINS ROUTER
 const enginsRouter = require("./routes/Engins");
 app.use("/engins", enginsRouter);
+// ENGINS ROUTER
+const saisieEnginsRouter = require("./routes/SaisieEngins");
+app.use("/saisieengins", saisieEnginsRouter);
 
 // SEQUELIZE
 db.sequelize
