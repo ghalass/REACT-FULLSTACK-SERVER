@@ -46,6 +46,9 @@ app.use("/typeparcs", typeparcsRouter);
 // PARCS ROUTER
 const parcsRouter = require("./routes/Parcs");
 app.use("/parcs", parcsRouter);
+// ENGINS ROUTER
+const enginsRouter = require("./routes/Engins");
+app.use("/engins", enginsRouter);
 
 // SEQUELIZE
 db.sequelize
