@@ -21,7 +21,7 @@ router.get("/", async (req, res) => {
 router.get("/byId/:id", async (req, res) => {
   try {
     const id = req.params.id;
-    const object = await Engins.findByPk(id);
+    const object = await Engins.findByPk(id, { include: [Parcs, Sites] });
     if (object) {
       res.json(object);
     } else {

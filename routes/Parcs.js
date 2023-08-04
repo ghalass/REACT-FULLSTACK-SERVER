@@ -21,7 +21,23 @@ router.get("/", async (req, res) => {
 router.get("/byId/:id", async (req, res) => {
   try {
     const id = req.params.id;
-    const object = await Parcs.findByPk(id);
+    const object = await Parcs.findByPk(id, { include: [TypeParcs] });
+    res.json(object);
+  } catch (error) {
+    console.log(`${error}`.red);
+    res.json({ error: "Parc Doesn't Exist" });
+  }
+});
+
+// GET BY TYPEPARC_ID
+router.get("/byTypeparcId/:id", async (req, res) => {
+  try {
+    const id = req.params.id;
+    const object = await Parcs.findAll({
+      where: {
+        TypeParcId: id,
+      },
+    });
     res.json(object);
   } catch (error) {
     console.log(`${error}`.red);
