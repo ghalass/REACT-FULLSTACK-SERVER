@@ -6,5 +6,11 @@ module.exports = (sequelize, DataType) => {
     },
   });
 
+  TypeParcs.associate = (models) => {
+    TypeParcs.hasMany(models.Parcs, {
+      onDelete: "cascade",
+    });
+  };
+
   return TypeParcs;
 };

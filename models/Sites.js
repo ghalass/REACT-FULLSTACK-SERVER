@@ -10,5 +10,11 @@ module.exports = (sequelize, DataType) => {
     },
   });
 
+  Sites.associate = (models) => {
+    Sites.hasMany(models.Engins, {
+      onDelete: "cascade",
+    });
+  };
+
   return Sites;
 };

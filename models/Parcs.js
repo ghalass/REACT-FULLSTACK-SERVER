@@ -9,6 +9,11 @@ module.exports = (sequelize, DataType) => {
       allowNull: false,
     },
   });
+  Parcs.associate = (models) => {
+    Parcs.hasMany(models.Engins, {
+      onDelete: "cascade",
+    });
+  };
 
   return Parcs;
 };
