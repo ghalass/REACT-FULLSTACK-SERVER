@@ -43,6 +43,9 @@ app.use("/sites", sitesRouter);
 // SITES ROUTER
 const typeparcsRouter = require("./routes/TypeParcs");
 app.use("/typeparcs", typeparcsRouter);
+// PARCS ROUTER
+const parcsRouter = require("./routes/Parcs");
+app.use("/parcs", parcsRouter);
 
 // SEQUELIZE
 db.sequelize
