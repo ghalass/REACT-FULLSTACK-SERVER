@@ -24,7 +24,7 @@ router.get("/byId/:id", async (req, res) => {
     res.json(post);
   } catch (error) {
     console.log(`${error}`.red);
-    res.json({ error: "Site Doesn't Exist" });
+    res.json({ error: "Site n'est pas trouvé." });
   }
 });
 
@@ -37,10 +37,10 @@ router.post("/", async (req, res) => {
     },
   });
   if (siteFounded) {
-    res.json({ error: "Site Is already exist" });
+    res.json({ error: "Site exist dèjà." });
   } else {
-    await Sites.create(site);
-    res.json(site);
+    const added = await Sites.create(site);
+    res.json(added);
   }
 });
 
@@ -58,7 +58,7 @@ router.put("/", async (req, res) => {
       },
     });
     if (siteFounded) {
-      res.json({ error: "Site Is already exist" });
+      res.json({ error: "Site exist dèjà." });
     } else {
       const updatedSite = await Sites.update(site, { where: { id: site.id } });
       res.json(updatedSite);
@@ -80,7 +80,7 @@ router.delete("/:siteId", async (req, res) => {
     res.json("DELETED SUCCESSFULLY");
   } catch (error) {
     console.log(`${error}`.red);
-    res.json({ error: "Site Doesn't Exist" });
+    res.json({ error: "Site n'est pas trouvé." });
   }
 });
 
